@@ -16,17 +16,18 @@ def homepage():
 
 @app.route('/submit_feedback', methods=['POST'])
 def submit_feedback():
-    form = request.form
-    files = request.files 
-    image_file = request.files['image']
-
-    save_filename = f'{uuid.uuid4()}_{image_file.filename}'
-    save_location = os.path.join(app.config['UPLOAD_FOLDER'], save_filename)
-    image_file.save(save_location)
-
-    feedback = request.form.to_dict()
-    feedback['image_path'] = save_filename
+    feedback = request.form.to_dict()  # all the text feedback
+    image_file = request.files['image']  # the file, if one is uploaded
+    if image_file.filename:
+        save_filename = f'{uuid.uuid4()}_{image_file.filename}'
+        save_location = os.path.join(app.config['UPLOAD_FOLDER'], save_filename)
+        image_file.save(save_location)
+        feedback['image_path'] = save_filename
+        
     db.save_feedback(feedback)
+
+    # TODO error handling
+    # TODO several security-related tasks for file uploads
 
     return render_template('thank_you.html')
 
