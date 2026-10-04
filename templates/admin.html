@@ -11,8 +11,14 @@
     <p>Name: {{feedback.name}}</p>
     <p>Email: {{feedback.email}}</p>
     <p>Feedback: {{feedback.description}}</p>
-    <p>Image</p>
-    <img style="max-height: 300px" src="{{user_image_location}}/{{feedback.image_path}}">
+
+    {% if feedback.image_path %}
+        <p>Image</p>
+        <img style="max-height: 300px" src="{{user_image_location}}/{{feedback.image_path}}">
+    {% else %}
+        <p>No image</p>
+    {% endif %}
+
 </div>
 
 {% endfor %}

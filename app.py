@@ -23,7 +23,7 @@ def submit_feedback():
         save_location = os.path.join(app.config['UPLOAD_FOLDER'], save_filename)
         image_file.save(save_location)
         feedback['image_path'] = save_filename
-        
+
     db.save_feedback(feedback)
 
     # TODO error handling
@@ -49,4 +49,4 @@ def user_feedback_image(filename):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=7000)

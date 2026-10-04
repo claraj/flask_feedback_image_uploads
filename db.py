@@ -1,26 +1,23 @@
 import shelve 
 
-database_file = 'feedbacks.db'   # delete this file to clear the database. 
+database_file = 'feedbacks.db'   # delete this file to delete all the stored data. 
 feedback_key = 'feedback'
 
 def save_feedback(feedback):
     with shelve.open(database_file) as db:
-        if feedback_key in db: 
-            feedbacks = db[feedback_key]
-            feedbacks.append(feedback)
+        if feedback_key in db:  # if there is already a list of feedback
+            feedbacks = db[feedback_key]  # Get the existing list of feedback from the shelf
         else:
-            feedbacks = []
+            feedbacks = []  # otherwise, create a new empty list 
 
-        db[feedback_key] = feedbacks
+        feedbacks.append(feedback)  # add the new feedback to the ebd 
+        db[feedback_key] = feedbacks  # save the updated list back to the shelf
 
 
 def get_all_feedback():
     with shelve.open(database_file) as db:
-        feedbacks = db.get(feedback_key)
+        feedbacks = db.get(feedback_key)  # Get the feedback list, will be None if there is no feedback list 
     return feedbacks
 
 
-def clear_database():
-    with shelve.open(database_file) as db:
-        db.clear()
 
