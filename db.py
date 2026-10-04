@@ -21,3 +21,5 @@ def get_all_feedback():
 
 
 
+if __name__ == '__main__':
+    print(get_all_feedback())
