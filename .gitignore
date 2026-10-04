@@ -1,0 +1,4 @@
+__pycache__
+feedbacks.db
+user_feedback_images/*
+!user_feedback_images/placeholder.txt

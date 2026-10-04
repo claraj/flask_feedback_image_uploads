@@ -1,0 +1,1 @@
+Git ignores empty directories, this file is here so the user_feedback_images is not empty so git will include it in the repository.

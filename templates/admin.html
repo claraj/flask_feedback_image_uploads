@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Admin Page</h2>
+
+{{feedbacks}}
+<p>Number of feedbacks: {{ feedback_count }}</p>
+
+{% for feedback in feedbacks %}
+
+<div>
+    <p>Name: {{feedback.name}}</p>
+    <p>Email: {{feedback.email}}</p>
+    <p>Feedback: {{feedback.issue}}</p>
+    <p>Image</p>
+    <img height="200" src="{{user_image_location}}/{{feedback.image_path}}">
+</div>
+
+{% endfor %}
+
+{% endblock %}
